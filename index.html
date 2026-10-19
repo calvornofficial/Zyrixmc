@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZYRIX MC | Lifesteal SMP</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#451078,#170b29 48%,#050308);color:white;font-family:Arial,sans-serif;text-align:center}
+header{padding:28px 14px}
+.logo{font-size:clamp(38px,8vw,70px);font-weight:1000;color:#e9c8ff;text-shadow:0 0 15px #a855f7,0 0 35px #9333ea}
+.tag{color:#c4b5fd;letter-spacing:4px;font-size:12px}
+.hero{padding:25px 15px 60px}
+h1{font-size:clamp(30px,7vw,55px)}
+p{color:#c4b5fd;line-height:1.65}
+.panel{max-width:760px;margin:24px auto;padding:24px 16px;border:1px solid #873bd0;border-radius:22px;background:#130b20ed;box-shadow:0 0 35px #7e22ce33}
+.label{font-size:12px;letter-spacing:3px;color:#c4b5fd}
+.ip{margin:15px 0;font-size:clamp(25px,6.5vw,48px);font-weight:1000;overflow-wrap:anywhere;color:#fff;text-shadow:0 0 15px #c084fc,0 0 35px #9333ea}
+.port{display:inline-block;margin:10px;padding:12px 22px;border:2px solid #a855f7;border-radius:12px;color:#f3d8ff;font-size:clamp(24px,5vw,34px);font-weight:900;background:#32134b}
+button{margin:7px;padding:13px 17px;border:0;border-radius:10px;background:linear-gradient(100deg,#9333ea,#c026d3);color:white;font-weight:900;cursor:pointer}
+button:disabled{opacity:.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-top:20px}
+.stat{background:#1c102b;border:1px solid #48245e;border-radius:14px;padding:17px 8px}
+.stat small{display:block;color:#c4b5fd;margin-bottom:9px}
+.stat strong{font-size:20px;overflow-wrap:anywhere}
+.online{color:#4ade80}.offline{color:#fb7185}.checking{color:#facc15}
+.motd{padding:12px;background:#0c0813;border-radius:10px;overflow-wrap:anywhere}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.card{padding:20px;border:1px solid #43215e;border-radius:15px;background:#160d22}
+.card h3{color:#e9d5ff}
+footer{padding:28px;color:#8975a3;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">ZYRIX MC</div>
+ <div class="tag">LIFESTEAL • SURVIVAL • PVP</div>
+</header>
 
+<main class="hero">
+ <h1>ENTER THE <span style="color:#d8b4fe">ZYRIX</span> WORLD</h1>
+ <p>Fight rivals. Steal hearts. Build your legacy.</p>
+
+ <section class="panel">
+  <div class="label">JAVA & BEDROCK SERVER IP</div>
+  <div class="ip">hyper.zyrix.cloud</div>
+  <div class="label">SERVER PORT</div>
+  <div class="port">25582</div><br>
+  <button onclick="copyText('hyper.zyrix.cloud')">COPY IP</button>
+  <button onclick="copyText('hyper.zyrix.cloud:25582')">COPY FULL ADDRESS</button>
+  <p id="copyMsg">Ready to connect?</p>
+ </section>
+
+ <section class="panel" id="live">
+  <h2>🟣 LIVE SERVER STATUS</h2>
+  <p>REAL-TIME SERVER MONITOR</p>
+  <div class="grid">
+   <div class="stat"><small>SERVER STATUS</small><strong id="status" class="checking">Checking...</strong></div>
+   <div class="stat"><small>ONLINE PLAYERS</small><strong id="players">-- / --</strong></div>
+   <div class="stat"><small>SERVER VERSION</small><strong id="version">--</strong></div>
+   <div class="stat"><small>API RESPONSE</small><strong id="latency">--</strong></div>
+  </div>
+  <h3>SERVER MOTD</h3>
+  <div class="motd" id="motd">Fetching server information...</div>
+  <p id="updated">Waiting for first response...</p>
+  <button id="refresh" onclick="checkServer(true)">↻ REFRESH STATUS</button>
+ </section>
+
+ <section class="cards">
+  <div class="card"><h3>⚔️ LIFESTEAL</h3><p>Fight rivals and survive with every heart.</p></div>
+  <div class="card"><h3>👑 RANKS</h3><p>Discover ranks and exclusive perks.</p></div>
+  <div class="card"><h3>🌍 MULTIPLAYER</h3><p>Join friends and build your legacy.</p></div>
+ </section>
+
+ <section class="panel">
+  <h2>HOW TO JOIN</h2>
+  <p>Java: Multiplayer → Add Server</p>
+  <p>Bedrock: Play → Servers → Add Server</p>
+  <p>Address: <b>hyper.zyrix.cloud</b></p>
+  <p>Port: <b>25582</b></p>
+ </section>
+</main>
+
+<footer>© 2026 ZYRIX MC • Unofficial server website demo</footer>
+
+<script>
+const HOST = "hyper.zyrix.cloud";
+const PORT = 25582;
+const API = "https://api.mcsrvstat.us/3/" +
+            encodeURIComponent(HOST + ":" + PORT);
+
+async function copyText(text){
+ try{
+  await navigator.clipboard.writeText(text);
+  document.getElementById("copyMsg").textContent = "✓ Copied: " + text;
+ }catch(e){
+  document.getElementById("copyMsg").textContent =
+    "Copy unavailable. Address: " + text;
+ }
+}
+
+async function checkServer(manual=false){
+ const status = document.getElementById("status");
+ const refresh = document.getElementById("refresh");
+ if(manual) refresh.disabled = true;
+
+ const start = performance.now();
+ status.textContent = "Checking...";
+ status.className = "checking";
+
+ try{
+  const response = await fetch(API + "?_=" + Date.now(), {
+    cache:"no-store"
+  });
+  if(!response.ok) throw new Error("API unavailable");
+
+  const data = await response.json();
+  const elapsed = Math.round(performance.now() - start);
+
+  if(data.online){
+   status.textContent = "● ONLINE";
+   status.className = "online";
+   document.getElementById("players").textContent =
+    (data.players?.online ?? 0) + " / " + (data.players?.max ?? "?");
+   document.getElementById("version").textContent = data.version || "Unknown";
+   document.getElementById("latency").textContent = elapsed + " ms";
+   const motd = (data.motd?.clean || []).join(" ");
+   document.getElementById("motd").textContent = motd || "Server is online.";
+  }else{
+   status.textContent = "● OFFLINE";
+   status.className = "offline";
+   document.getElementById("players").textContent = "0 / 0";
+   document.getElementById("version").textContent = "--";
+   document.getElementById("latency").textContent = "--";
+   document.getElementById("motd").textContent =
+    "Server offline, restarting, or not reachable.";
+  }
+ }catch(error){
+  status.textContent = "STATUS UNAVAILABLE";
+  status.className = "offline";
+  document.getElementById("players").textContent = "-- / --";
+  document.getElementById("version").textContent = "--";
+  document.getElementById("latency").textContent = "--";
+  document.getElementById("motd").textContent =
+   "Could not reach the status API. Check connection or try again.";
+ }
+
+ document.getElementById("updated").textContent =
+  "Last checked: " + new Date().toLocaleTimeString();
+ refresh.disabled = false;
+}
+
+checkServer();
+setInterval(() => checkServer(), 60000);
+</script>
+</body>
+  </html>

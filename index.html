@@ -1,475 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090611">
-<title>ZYRIX MC | Official Server</title>
-
-<style>
-:root{
- --bg:#090611;
- --panel:#130d22;
- --purple:#a855f7;
- --pink:#ec4899;
- --blue:#67e8f9;
- --text:#f8f4ff;
- --muted:#b5a6c9;
- --green:#4ade80;
- --red:#fb7185;
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#100b1c" name="theme-color"/>
+  <title>
+   ZYRIX MC — Lifesteal Network
+  </title>
+  <style>
+   :root{
+  --bg:#090710;
+  --panel:#151020;
+  --panel2:#1d1430;
+  --purple:#a855f7;
+  --pink:#e879f9;
+  --text:#f8f5ff;
+  --muted:#b8abc9;
+  --green:#55f2a5;
+  --red:#ff657a
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box
+}
+html{
+  scroll-behavior:smooth
+}
 body{
- margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,Helvetica,sans-serif;overflow-x:hidden
+  margin:0;
+  background:radial-gradient(ellipse at 50% 0%,#32124b 0,transparent 42%),var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.55
 }
-body:before{
- content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
- background:radial-gradient(ellipse at 50% 0%,#7e22ce30,transparent 55%),
- radial-gradient(ellipse at 100% 75%,#2563eb16,transparent 45%)
+a{
+  color:inherit;
+  text-decoration:none
 }
-nav{
- height:72px;padding:0 7%;display:flex;align-items:center;
- justify-content:space-between;border-bottom:1px solid #ffffff12;
- background:#090611e8;position:sticky;top:0;z-index:10;
- backdrop-filter:blur(14px)
+.wrap{
+  width:min(1080px,92%);
+  margin:auto
 }
-.logo{font-size:23px;font-weight:900;letter-spacing:3px}
-.logo span{color:#c084fc}
-nav a{color:#d4c4e8;text-decoration:none;font-size:13px;margin-left:22px}
-nav a:hover{color:#e879f9}
-.hero{text-align:center;padding:95px 18px 55px}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0
+}
+.brand{
+  font-weight:1000;
+  letter-spacing:3px;
+  font-size:1.2rem
+}
+.brand b{
+  color:var(--pink)
+}
+.nav a{
+  color:var(--muted);
+  font-size:.92rem;
+  margin-left:18px
+}
+.hero{
+  min-height:550px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  padding:55px 0 70px
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  width:270px;
+  height:390px;
+  top:60px;
+  left:50%;
+  transform:translateX(-50%);
+  border:10px solid #34204d;
+  border-radius:48% 48% 8px 8px;
+  box-shadow:0 0 18px #a855f788,inset 0 0 28px #c084fc55;
+  background:repeating-linear-gradient(125deg,#a855f733 0 12px,#4c1d9566 12px 24px);
+  filter:drop-shadow(0 0 32px #a855f766);
+  animation:portal 7s linear infinite;
+  opacity:.8
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,#09071022,#090710 95%);
+  pointer-events:none
+}
+.hero>*{
+  position:relative;
+  z-index:1
+}
 .pill{
- display:inline-block;padding:10px 16px;border-radius:30px;
- border:1px solid #a855f755;background:#a855f715;
- color:#e9d5ff;font-size:11px;letter-spacing:2px
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  border:1px solid #a855f766;
+  background:#160d25d9;
+  border-radius:99px;
+  padding:7px 13px;
+  color:#e9d5ff;
+  font-size:.8rem
 }
-h1{font-size:clamp(48px,10vw,94px);line-height:1;margin:27px 0 18px;letter-spacing:-3px}
-.gradient{
- background:linear-gradient(90deg,#c084fc,#f0abfc,#67e8f9);
- color:transparent;background-clip:text;-webkit-background-clip:text
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green)
 }
-.intro{max-width:560px;margin:0 auto 27px;color:var(--muted);line-height:1.8;font-size:15px}
-.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+h1{
+  font-size:clamp(3rem,10vw,6.5rem);
+  line-height:.98;
+  margin:20px 0 15px;
+  font-weight:1000;
+  letter-spacing:-3px;
+  text-shadow:0 0 32px #a855f755
+}
+h1 span{
+  background:linear-gradient(100deg,#fff,#e9b8ff 48%,#a855f7);
+  color:transparent;
+  background-clip:text
+}
+.subtitle{
+  max-width:650px;
+  color:#d3c6e2;
+  margin:0 auto 25px
+}
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap
+}
 .btn{
- padding:15px 22px;border-radius:10px;font-size:12px;font-weight:800;
- letter-spacing:.5px;text-decoration:none;cursor:pointer;transition:.2s
+  border:1px solid #7541a0;
+  background:linear-gradient(120deg,#9333ea,#6d28d9);
+  color:white;
+  padding:12px 19px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 8px 30px #7e22ce30
 }
-.primary{border:0;color:white;background:linear-gradient(110deg,#7c3aed,#c026d3);box-shadow:0 0 26px #a855f733}
-.secondary{color:white;background:#ffffff08;border:1px solid #ffffff24}
-.btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
-.wrap{max-width:1050px;margin:auto;padding:0 20px}
-.ipbox{
- max-width:760px;margin:0 auto 35px;padding:25px;
- border:1px solid #a855f755;border-radius:18px;
- background:linear-gradient(135deg,#19102a,#0d0a17);
- box-shadow:0 18px 65px #0005
+.btn.secondary{
+  background:#171020;
+  border-color:#49365f
 }
-.iphead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
-.label{font-size:10px;letter-spacing:2px;color:#bba9d0}
-.address{
- display:flex;align-items:center;justify-content:space-between;gap:12px;
- background:#090611;border:1px solid #ffffff15;border-radius:12px;padding:15px
+.btn:active{
+  transform:scale(.98)
 }
-.address strong{font-size:clamp(15px,3.5vw,23px);overflow-wrap:anywhere}
-.copy{
- background:linear-gradient(110deg,#7c3aed,#c026d3);color:white;
- border:0;border-radius:8px;padding:12px 15px;font-weight:800;cursor:pointer
+section{
+  padding:35px 0 55px
 }
-.port{font-size:13px;color:var(--muted);margin-top:14px}
-
-/* UPGRADED SERVER STATUS */
-.status-panel{
- max-width:760px;margin:0 auto 45px;padding:24px;
- border:1px solid #a855f766;border-radius:19px;
- background:linear-gradient(145deg,#19102b,#0b0916);
- box-shadow:0 12px 45px #0005,0 0 30px #9333ea12;
- position:relative;overflow:hidden
+.section-title{
+  text-align:center;
+  font-size:clamp(1.65rem,5vw,2.5rem);
+  margin:0 0 8px
 }
-.status-panel:before{
- content:"";position:absolute;top:0;left:0;right:0;height:2px;
- background:linear-gradient(90deg,transparent,#a855f7,#67e8f9,#ec4899,transparent)
+.lead{
+  text-align:center;
+  color:var(--muted);
+  margin:0 auto 25px;
+  max-width:650px
+}
+.server-card{
+  max-width:780px;
+  margin:auto;
+  padding:22px;
+  border:1px solid #6d3d8b;
+  background:linear-gradient(135deg,#1c122b,#100c19);
+  border-radius:22px;
+  box-shadow:0 0 40px #7e22ce20
 }
 .status-head{
- display:flex;align-items:center;justify-content:space-between;
- gap:12px;flex-wrap:wrap;margin-bottom:22px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap
 }
-.status-title{
- margin:0;font-size:clamp(19px,4vw,25px);font-weight:900;
- letter-spacing:2px
+.status-label{
+  color:var(--muted);
+  font-size:.88rem
 }
-.refresh-btn{
- display:inline-flex;align-items:center;justify-content:center;gap:7px;
- background:#a855f714;border:1px solid #a855f766;color:#e9d5ff;
- padding:9px 12px;border-radius:9px;font-size:10px;
- font-weight:800;letter-spacing:.7px;cursor:pointer;transition:.2s
+.status{
+  font-weight:900;
+  color:var(--green)
 }
-.refresh-btn:hover{background:#a855f733;border-color:#d8b4fe}
-.refresh-btn:disabled{opacity:.65;cursor:wait}
-.refresh-icon{font-size:15px}
-.refresh-btn.loading .refresh-icon{animation:spin .8s linear infinite}
-.status-display{
- display:flex;align-items:center;gap:15px;padding:19px;
- border:1px solid #ffffff12;border-radius:14px;
- background:linear-gradient(110deg,#ffffff05,transparent)
+.ip-box{
+  margin:20px 0 12px;
+  border:1px solid #6f4392;
+  border-radius:15px;
+  background:#090710;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap
 }
-.status-orb{
- width:15px;height:15px;border-radius:50%;flex-shrink:0;
- background:#fbbf24;box-shadow:0 0 15px #fbbf24;
- animation:pulse 2s infinite
+.ip-label{
+  font-size:.75rem;
+  color:var(--muted);
+  letter-spacing:2px
 }
-.status-main{font-size:clamp(20px,5vw,30px);font-weight:900;letter-spacing:1.5px}
-.status-sub{font-size:11px;color:var(--muted);margin-top:7px;letter-spacing:1px}
-.status-panel.online{border-color:#4ade8055}
-.status-panel.online .status-orb{background:var(--green);box-shadow:0 0 17px #4ade80}
-.status-panel.online .status-main{color:#86efac}
-.status-panel.offline{border-color:#fb718555}
-.status-panel.offline .status-orb{background:var(--red);box-shadow:0 0 17px #fb7185}
-.status-panel.offline .status-main{color:#fda4af}
-.status-panel.unknown .status-main{color:#fcd34d}
-.status-panel.unknown .status-orb{background:#fbbf24;box-shadow:0 0 15px #fbbf24}
-.player-box{
- display:flex;align-items:center;justify-content:space-between;gap:12px;
- margin-top:14px;padding:18px 19px;border-radius:14px;
- background:#090611;border:1px solid #ffffff12
+.ip{
+  font-size:clamp(1.25rem,5vw,2rem);
+  font-weight:950;
+  overflow-wrap:anywhere;
+  line-height:1.25
 }
-.player-label{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
-.player-number{font-size:clamp(23px,5vw,30px);font-weight:900;margin-top:8px}
-.player-number small{font-size:15px;color:#a99abf;font-weight:600}
-.player-icon{
- width:43px;height:43px;display:grid;place-items:center;
- border-radius:12px;background:#a855f71a;border:1px solid #a855f744;font-size:21px
+.port{
+  color:#d8b4fe;
+  font-weight:800;
+  margin-top:5px
 }
-.status-foot{
- display:flex;justify-content:space-between;align-items:center;
- gap:8px;flex-wrap:wrap;margin-top:16px;color:#9b8aaf;font-size:10px
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:15px
 }
-.live-indicator{display:flex;align-items:center;gap:7px}
-.mini-dot{width:6px;height:6px;border-radius:50%;background:#a78bfa}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-bottom:65px}
 .stat{
- text-align:center;padding:24px 10px;border:1px solid #a855f744;
- border-radius:16px;background:linear-gradient(145deg,#19102c,#0c0a18);transition:.25s
+  background:#ffffff07;
+  border:1px solid #ffffff12;
+  padding:15px;
+  border-radius:13px
 }
-.stat:hover{transform:translateY(-4px);border-color:#e879f9;box-shadow:0 12px 32px #a855f722}
-.stat>span{display:block;font-size:10px;letter-spacing:1.5px;color:var(--muted)}
-.stat b{display:block;margin:14px 0;font-size:clamp(18px,3vw,26px)}
-.stat .detail{font-size:10px;letter-spacing:1px;color:#c4b5fd}
-section{padding:22px 0 58px}
-.heading{text-align:center;font-size:32px;margin:0 0 12px}
-.desc{text-align:center;font-size:14px;color:var(--muted);margin:0 0 30px;line-height:1.7}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.card{
- padding:25px;border-radius:17px;border:1px solid #ffffff15;
- background:linear-gradient(145deg,#171025,#0d0a18);
- transition:transform .25s,border-color .25s,box-shadow .25s
+.stat small{
+  display:block;
+  color:var(--muted);
+  font-size:.78rem
 }
-.card:hover{transform:translateY(-5px);border-color:#a855f777;box-shadow:0 12px 35px #9333ea16}
-.icon{font-size:30px;filter:drop-shadow(0 0 10px #c084fc66)}
-.card h3{margin:16px 0 10px;font-size:19px}
-.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.stat strong{
+  font-size:1.2rem
+}
+.note{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-top:15px
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px
+}
+.tile{
+  background:linear-gradient(145deg,#1b1329,#100c18);
+  border:1px solid #ffffff14;
+  padding:20px;
+  border-radius:17px
+}
+.tile .emoji{
+  font-size:1.7rem
+}
+.tile h3{
+  margin:9px 0 5px
+}
+.tile p{
+  margin:0;
+  color:var(--muted);
+  font-size:.93rem
+}
+.rank{
+  display:flex;
+  flex-direction:column;
+  gap:10px
+}
+.rank .price{
+  color:#e9b8ff;
+  font-weight:900;
+  font-size:1.35rem
+}
+.rank .btn{
+  margin-top:auto
+}
+.join-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px
+}
+.footer{
+  text-align:center;
+  padding:30px 0 40px;
+  color:var(--muted);
+  border-top:1px solid #ffffff12;
+  font-size:.85rem
+}
+.toast{
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:#241534;
+  border:1px solid #a855f7;
+  padding:10px 15px;
+  border-radius:10px;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  z-index:10
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+@keyframes portal{
+  0%{
+  filter:drop-shadow(0 0 24px #a855f766);
+  background-position:0 0
+}
+50%{
+  filter:drop-shadow(0 0 38px #e879f988);
+  background-position:120px 90px
+}
+100%{
+  filter:drop-shadow(0 0 24px #a855f766);
+  background-position:240px 180px
+}
+}
+/* Premium endless rank effects — original layout and palette preserved */
+#ranks .grid{
+  perspective:900px;
+}
 #ranks .rank{
- position:relative;isolation:isolate;overflow:hidden;text-align:center;
- min-height:235px;background:linear-gradient(145deg,#19102b,#0b0b19);
- border:1px solid #a855f766
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:235px;
+  transform:translateZ(0);
+  border:1px solid #8b5ab8;
+  background:linear-gradient(145deg,#211331 0%,#100c18 58%,#21102f 100%);
+  box-shadow:0 8px 24px #0005;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+  animation:rankEntrance .75s both,rankAura 4.8s ease-in-out infinite;
+}
+#ranks .rank:nth-child(2){
+  animation-delay:.12s,.7s
+}
+#ranks .rank:nth-child(3){
+  animation-delay:.24s,1.4s
 }
 #ranks .rank:before{
- content:"";position:absolute;inset:-100%;z-index:-1;opacity:.24;
- background:conic-gradient(transparent,#a855f7,transparent,#38bdf8,transparent);
- animation:spin 12s linear infinite
+  content:"";
+  position:absolute;
+  inset:-45%;
+  z-index:-1;
+  pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 58%,#a855f766 68%,#e879f988 73%,#c084fc44 78%,transparent 88% 100%);
+  animation:rankOrbit 7s linear infinite;
+  opacity:.8
 }
-#ranks .rank:nth-child(2){border-color:#ec489977}
-#ranks .rank:nth-child(3){border-color:#38bdf877}
-.rank .icon{font-size:40px;display:inline-block;animation:float 3s ease-in-out infinite}
-.rank:nth-child(2) .icon{animation-delay:.5s}
-.rank:nth-child(3) .icon{animation-delay:1s}
-.rank h3{font-size:22px;letter-spacing:2px}
-.soon{
- display:inline-block;padding:9px 13px;border:1px solid #d946ef88;
- border-radius:30px;background:#a855f71a;color:#f5d0fe;
- font-size:10px;font-weight:bold;letter-spacing:1.4px
+#ranks .rank:after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  z-index:-1;
+  border-radius:16px;
+  pointer-events:none;
+  background:linear-gradient(145deg,#1b1329f7,#100c18f7 60%,#1c1028f7);
 }
-.join{
- margin:0 0 65px;padding:42px 18px;text-align:center;
- border:1px solid #a855f755;border-radius:20px;
- background:linear-gradient(120deg,#7c3aed1b,#c026d317,#2563eb12)
+#ranks .rank:hover{
+  transform:translateY(-9px) scale(1.025);
+  border-color:#e879f9;
+  box-shadow:0 15px 38px #a855f744,0 0 22px #a855f733;
 }
-footer{text-align:center;padding:28px 15px;border-top:1px solid #ffffff12;color:#8f80a2;font-size:12px}
-.toast{
- position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
- opacity:0;pointer-events:none;background:#241238;border:1px solid #c084fc77;
- padding:12px 20px;border-radius:12px;z-index:20;transition:.25s;font-size:13px;
- max-width:90%;text-align:center
+#ranks .rank .emoji{
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:#a855f71b;
+  border:1px solid #c084fc66;
+  color:#f3d5ff;
+  text-shadow:0 0 18px #e879f9;
+  animation:rankIconFloat 3s ease-in-out infinite;
+  transition:transform .3s ease,filter .3s ease;
 }
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@keyframes glow{0%,100%{box-shadow:0 0 12px #a855f722}50%{box-shadow:0 0 25px #d946ef44}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-@media(max-width:650px){
- nav{padding:0 5%;height:64px}
- nav a{margin-left:10px;font-size:11px}
- .hero{padding-top:72px}
- .stats{gap:8px}
- .stat{padding:19px 5px}
- .stat>span{font-size:8px;letter-spacing:.7px}
- .stat b{font-size:17px}
- .stat .detail{font-size:8px}
- .cards{grid-template-columns:1fr}
- .ipbox{padding:17px}
- .address{padding:11px}
- .copy{padding:11px}
- .heading{font-size:28px}
- #ranks .rank{min-height:205px}
- .status-panel{padding:17px}
- .status-head{margin-bottom:17px}
- .status-display,.player-box{padding:15px}
- .refresh-btn{font-size:9px;padding:9px}
+#ranks .rank:nth-child(2) .emoji{
+  animation-delay:.45s
+}
+#ranks .rank:nth-child(3) .emoji{
+  animation-delay:.9s
+}
+#ranks .rank:hover .emoji{
+  transform:rotate(-8deg) scale(1.13);
+  filter:drop-shadow(0 0 10px #e879f9);
+}
+#ranks .rank h3{
+  letter-spacing:1.6px;
+  text-shadow:0 0 16px #c084fc55;
+}
+#ranks .rank .price{
+  width:fit-content;
+  padding:5px 11px;
+  border-radius:999px;
+  border:1px solid #a855f755;
+  background:#a855f71a;
+  animation:priceGlow 2.8s ease-in-out infinite;
+}
+#ranks .rank:nth-child(2) .price{
+  animation-delay:.6s
+}
+#ranks .rank:nth-child(3) .price{
+  animation-delay:1.2s
+}
+@keyframes rankEntrance{
+  from{
+  opacity:0;
+  transform:translateY(22px) scale(.97)
+}
+to{
+  opacity:1;
+  transform:translateY(0) scale(1)
+}
+}
+@keyframes rankAura{
+  0%,100%{
+  box-shadow:0 8px 24px #0005,0 0 0 #a855f700
+}
+50%{
+  box-shadow:0 8px 28px #0006,0 0 19px #a855f72b
+}
+}
+@keyframes rankOrbit{
+  to{
+  transform:rotate(360deg)
+}
+}
+@keyframes rankIconFloat{
+  0%,100%{
+  translate:0 0
+}
+50%{
+  translate:0 -5px
+}
+}
+@keyframes priceGlow{
+  0%,100%{
+  box-shadow:0 0 0 #a855f700;
+  border-color:#a855f755
+}
+50%{
+  box-shadow:0 0 16px #a855f733;
+  border-color:#e879f9aa
+}
+}
+@media(max-width:700px){
+  .nav a{
+  margin-left:9px;
+  font-size:.8rem
+}
+.nav .hide-mobile{
+  display:none
+}
+.hero{
+  min-height:500px;
+  padding-top:45px
+}
+.hero:before{
+  width:210px;
+  height:310px
+}
+.grid{
+  grid-template-columns:1fr
+}
+.join-grid{
+  grid-template-columns:1fr
+}
+.stats{
+  grid-template-columns:1fr
+}
+.ip-box .btn{
+  width:100%
+}
+.server-card{
+  padding:16px
+}
 }
 @media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+  *,*:before,*:after{
+  animation:none!important;
+  scroll-behavior:auto!important;
+  transition:none!important
 }
-</style>
-</head>
-
-<body>
-<nav>
- <div class="logo">ZYRIX<span>MC</span></div>
- <div><a href="#features">Features</a><a href="#ranks">Ranks</a><a href="#join">Join</a></div>
-</nav>
-
-<header class="hero">
- <div class="pill">✦ YOUR NEXT MINECRAFT ADVENTURE ✦</div>
- <h1>ENTER <span class="gradient">ZYRIX</span></h1>
- <p class="intro">Enter a new world. Build your legacy, discover your next adventure, and join the ZYRIX MC community.</p>
- <div class="actions">
-  <button class="btn primary" onclick="copyAddress()">⚡ COPY SERVER ADDRESS</button>
-  <a class="btn secondary" href="#server-status">CHECK SERVER STATUS ↓</a>
- </div>
-</header>
-
-<main class="wrap">
- <div class="ipbox">
-  <div class="iphead">
-   <span class="label">✦ OFFICIAL SERVER ADDRESS</span>
-   <span class="label">JAVA SERVER</span>
-  </div>
-  <div class="address">
-   <strong id="ip">play.zyrixmc.fun</strong>
-   <button class="copy" onclick="copyAddress()">COPY</button>
-  </div>
-  <div class="port">SERVER PORT: <strong>25582</strong></div>
- </div>
-
- <!-- SERVER STATUS: REFRESH BUTTON BESIDE HEADING -->
- <section id="server-status">
-  <div class="status-panel unknown" id="statusPanel">
-   <div class="status-head">
-    <h2 class="status-title">SERVER STATUS</h2>
-    <button class="refresh-btn" id="refreshBtn" onclick="checkStatus(true)">
-     <span class="refresh-icon" id="refreshIcon">↻</span>
-     <span id="refreshText">REFRESH STATUS</span>
-    </button>
-   </div>
-
-   <div class="status-display">
-    <span class="status-orb" id="statusOrb"></span>
+}
+  </style>
+ </head>
+ <body>
+  <header class="wrap nav">
+   <a class="brand" href="#home">
+    ZYRIX
+    <b>
+     MC
+    </b>
+   </a>
+   <nav>
+    <a href="#status">
+     Status
+    </a>
+    <a href="#features">
+     Features
+    </a>
+    <a href="#ranks">
+     Ranks
+    </a>
+    <a class="hide-mobile" href="#join">
+     Join
+    </a>
+   </nav>
+  </header>
+  <main id="home">
+   <section class="hero wrap">
     <div>
-     <div class="status-main" id="status">CHECKING SERVER...</div>
-     <div class="status-sub" id="statusDetail">CONNECTING TO ZYRIX MC</div>
+     <div class="pill">
+      <span class="dot">
+      </span>
+      LIFESTEAL NETWORK · JAVA
+     </div>
+     <h1>
+      ENTER THE
+      <br/>
+      <span>
+       ZYRIX WORLD
+      </span>
+     </h1>
+     <p class="subtitle">
+      Fight for every heart. Build your legacy. Challenge rivals and make your name legendary in the ZYRIX MC world.
+     </p>
+     <div class="actions">
+      <a class="btn" href="#status">
+       ⚔ Join the Server
+      </a>
+      <a class="btn secondary" href="#features">
+       Explore Features
+      </a>
+     </div>
     </div>
-   </div>
-
-   <div class="player-box">
-    <div>
-     <div class="player-label">♟ &nbsp; PLAYERS ONLINE</div>
-     <div class="player-number" id="players">-- <small>/ --</small></div>
+   </section>
+   <section id="status">
+    <div class="wrap">
+     <h2 class="section-title">
+      SERVER STATUS
+     </h2>
+     <p class="lead">
+      Live information checked from the Minecraft status API.
+     </p>
+     <div class="server-card">
+      <div class="status-head">
+       <div>
+        <div class="status-label">
+         CURRENT SERVER STATUS
+        </div>
+        <div class="status" id="statusText">
+         ◌ Checking server…
+        </div>
+       </div>
+       <button class="btn secondary" id="refreshBtn">
+        ↻ Refresh
+       </button>
+      </div>
+      <div class="ip-box">
+       <div>
+        <div class="ip-label">
+         SERVER ADDRESS
+        </div>
+        <div class="ip">
+         play.zyrixmc.fun
+        </div>
+        <div class="port">
+         PORT: 25582
+        </div>
+       </div>
+       <button class="btn" id="copyBtn">
+        ▣ Copy Address
+       </button>
+      </div>
+      <div class="stats">
+       <div class="stat">
+        <small>
+         PLAYERS ONLINE
+        </small>
+        <strong id="players">
+         Checking…
+        </strong>
+       </div>
+       <div class="stat">
+        <small>
+         GAME VERSION
+        </small>
+        <strong id="version">
+         Checking…
+        </strong>
+       </div>
+       <div class="stat">
+        <small>
+         LAST CHECK
+        </small>
+        <strong id="lastCheck">
+         —
+        </strong>
+       </div>
+      </div>
+      <p class="note" id="apiNote">
+       Connecting to status API… This page refreshes the status every 60 seconds. API availability and server configuration may affect results.
+      </p>
+     </div>
     </div>
-    <div class="player-icon">⚔️</div>
+   </section>
+   <section id="features">
+    <div class="wrap">
+     <h2 class="section-title">
+      WHY ZYRIX MC?
+     </h2>
+     <p class="lead">
+      A server hub built for adventure, competition and community.
+     </p>
+     <div class="grid">
+      <article class="tile">
+       <div class="emoji">
+        ❤️‍🔥
+       </div>
+       <h3>
+        Lifesteal Action
+       </h3>
+       <p>
+        Fight smart, protect your hearts and rise above your rivals.
+       </p>
+      </article>
+      <article class="tile">
+       <div class="emoji">
+        ⚔️
+       </div>
+       <h3>
+        Competitive PvP
+       </h3>
+       <p>
+        Sharpen your skills, challenge opponents and prove your strength.
+       </p>
+      </article>
+      <article class="tile">
+       <div class="emoji">
+        🌌
+       </div>
+       <h3>
+        Adventure &amp; Builds
+       </h3>
+       <p>
+        Explore, team up with friends and create your own story.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section id="ranks">
+    <div class="wrap">
+     <h2 class="section-title">
+      RANKS &amp; PERKS
+     </h2>
+     <p class="lead">
+      Demo rank cards — replace these with your real store ranks and prices.
+     </p>
+     <div class="grid">
+      <article class="tile rank">
+       <div class="emoji">
+        ✦
+       </div>
+       <h3>
+        VIP
+       </h3>
+       <p>
+        Starter perks and a special chat identity.
+       </p>
+       <div class="price">
+        Add price
+       </div>
+      </article>
+      <article class="tile rank">
+       <div class="emoji">
+        ✧
+       </div>
+       <h3>
+        LEGEND
+       </h3>
+       <p>
+        Extra perks for dedicated players.
+       </p>
+       <div class="price">
+        Add price
+       </div>
+      </article>
+      <article class="tile rank">
+       <div class="emoji">
+        👑
+       </div>
+       <h3>
+        ZYRIX
+       </h3>
+       <p>
+        Premium status for your biggest supporters.
+       </p>
+       <div class="price">
+        Add price
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section id="join">
+    <div class="wrap">
+     <h2 class="section-title">
+      HOW TO JOIN
+     </h2>
+     <p class="lead">
+      Use play.zyrixmc.fun as the public server address. If a port is required, use 25582.
+     </p>
+     <div class="join-grid">
+      <article class="tile">
+       <h3>
+        🖥 Java Edition
+       </h3>
+       <p>
+        Multiplayer → Add Server → enter play.zyrixmc.fun (port 25582 if required) → Join Server.
+       </p>
+      </article>
+      <article class="tile">
+       <h3>
+        📱 Bedrock Edition
+       </h3>
+       <p>
+        Confirm with the server owner whether Bedrock is supported before joining. Use the correct Bedrock port if one is provided.
+       </p>
+      </article>
+     </div>
+     <div class="actions" style="margin-top:20px">
+      <button class="btn" id="copyJoin">
+       Copy play.zyrixmc.fun:25582
+      </button>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="wrap">
+    <strong>
+     ZYRIX MC
+    </strong>
+    <br/>
+    Unofficial community demo website · Not affiliated with Mojang or Microsoft.
+    <br/>
+    <span id="footerStatus">
+     Live status is loading…
+    </span>
    </div>
-
-   <div class="status-foot">
-    <span class="live-indicator"><span class="mini-dot"></span><span id="liveLabel">LIVE SERVER CHECK</span></span>
-    <span id="lastChecked">Waiting for first check...</span>
-   </div>
+  </footer>
+  <div class="toast" id="toast">
+   Copied!
   </div>
- </section>
-
- <div class="stats">
-  <div class="stat">
-   <span>⚡ SERVER VERSION</span>
-   <b id="version">--</b>
-   <span class="detail">DETECTED VERSION</span>
-  </div>
-  <div class="stat">
-   <span>🌐 CONNECTION</span>
-   <b id="connection">WAITING</b>
-   <span class="detail" id="connectionDetail">LIVE API CHECK</span>
-  </div>
- </div>
-
- <section id="features">
-  <h2 class="heading">Why <span class="gradient">ZYRIX MC?</span></h2>
-  <p class="desc">Your adventure. Your community. Your legacy.</p>
-  <div class="cards">
-   <div class="card"><div class="icon">⚔️</div><h3>Epic Gameplay</h3><p>Challenge yourself, improve your skills, and make every session count.</p></div>
-   <div class="card"><div class="icon">🌌</div><h3>Explore & Discover</h3><p>Step into the world and find your own path to adventure.</p></div>
-   <div class="card"><div class="icon">👑</div><h3>Build Your Legacy</h3><p>Make friends, create memories, and become part of the community.</p></div>
-  </div>
- </section>
-
- <section id="ranks">
-  <h2 class="heading">Exclusive <span class="gradient">Ranks</span></h2>
-  <p class="desc">Something special is being prepared. Stay tuned.</p>
-  <div class="cards">
-   <div class="card rank"><div class="icon">💎</div><h3>VIP</h3><span class="soon">COMING SOON</span><p style="margin-top:17px">Your first step toward something special.</p></div>
-   <div class="card rank"><div class="icon">👑</div><h3>LEGEND</h3><span class="soon">COMING SOON</span><p style="margin-top:17px">Stand out from the crowd.</p></div>
-   <div class="card rank"><div class="icon">🔥</div><h3>MYTHIC</h3><span class="soon">COMING SOON</span><p style="margin-top:17px">The ultimate rank awaits.</p></div>
-  </div>
- </section>
-
- <section id="join">
-  <div class="join">
-   <h2 class="heading">Ready to <span class="gradient">Join?</span></h2>
-   <p class="desc">Copy the server address and connect through Minecraft Multiplayer.</p>
-   <button class="btn primary" onclick="copyAddress()">COPY IP & PLAY ↗</button>
-  </div>
- </section>
-</main>
-
-<footer>© 2026 ZYRIX MC · OFFICIAL SERVER WEBSITE</footer>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>
-const HOST = "play.zyrixmc.fun";
-const PORT = 25582;
-const ADDRESS = HOST + ":" + PORT;
-
-let toastTimer;
-let requestInProgress = false;
-let lastRequest = 0;
-
-function showToast(message){
- const t = document.getElementById("toast");
- t.textContent = message;
- t.classList.add("show");
- clearTimeout(toastTimer);
- toastTimer = setTimeout(()=>t.classList.remove("show"),2500);
-}
-
-async function copyAddress(){
- try{
-  await navigator.clipboard.writeText(ADDRESS);
-  showToast("Copied: " + ADDRESS);
- }catch(e){
-  const area = document.createElement("textarea");
-  area.value = ADDRESS;
-  area.style.position = "fixed";
-  area.style.opacity = "0";
-  document.body.appendChild(area);
-  area.select();
-  let ok = false;
-  try{ok = document.execCommand("copy")}catch(err){}
-  area.remove();
-  showToast(ok ? "Copied: " + ADDRESS : "Server address: " + ADDRESS);
- }
-}
-
-function setState(state, title, detail){
- const panel = document.getElementById("statusPanel");
- panel.className = "status-panel " + state;
- document.getElementById("status").textContent = title;
- document.getElementById("statusDetail").textContent = detail;
-}
-
-function setBusy(busy){
- const btn = document.getElementById("refreshBtn");
- btn.disabled = busy;
- btn.classList.toggle("loading",busy);
- document.getElementById("refreshText").textContent =
-  busy ? "CHECKING..." : "REFRESH STATUS";
- document.getElementById("refreshIcon").textContent = "↻";
-}
-
-function updateCheckedTime(){
- document.getElementById("lastChecked").textContent =
-  "LAST CHECKED: " + new Date().toLocaleTimeString();
-}
-
-async function checkStatus(manual = false){
- if(requestInProgress) return;
-
- requestInProgress = true;
- setBusy(true);
- setState("unknown","CHECKING SERVER...","FETCHING LIVE SERVER DATA");
- document.getElementById("liveLabel").textContent = "CHECKING API";
- document.getElementById("connection").textContent = "CHECKING";
- document.getElementById("connectionDetail").textContent = "PLEASE WAIT";
-
- const controller = new AbortController();
- const timeout = setTimeout(()=>controller.abort(),10000);
-
- try{
-  const url = "https://api.mcsrvstat.us/3/" + encodeURIComponent(ADDRESS);
-  const response = await fetch(url,{
-   cache:"no-store",
-   signal:controller.signal
-  });
-
-  if(!response.ok) throw new Error("API request failed");
-
-  const data = await response.json();
-
-  if(data.online === true){
-   setState("online","SERVER ONLINE","ZYRIX MC IS RESPONDING");
-   document.getElementById("liveLabel").textContent = "● LIVE · ONLINE";
-   document.getElementById("connection").textContent = "ONLINE";
-   document.getElementById("connectionDetail").textContent = "SERVER RESPONDING";
-
-   const online = Number.isFinite(data.players?.online)
-    ? data.players.online : 0;
-   const max = Number.isFinite(data.players?.max)
-    ? data.players.max : "?";
-
-   document.getElementById("players").innerHTML =
-    online + ' <small>/ ' + max + '</small>';
-   document.getElementById("version").textContent =
-    data.version || data.protocol?.name || "Unknown";
-  }else if(data.online === false){
-   setState("offline","SERVER OFFLINE","SERVER NOT RESPONDING");
-   document.getElementById("liveLabel").textContent = "● OFFLINE";
-   document.getElementById("connection").textContent = "OFFLINE";
-   document.getElementById("connectionDetail").textContent = "SERVER NOT REACHABLE";
-   document.getElementById("players").innerHTML = '0 <small>/ --</small>';
-   document.getElementById("version").textContent = "--";
-  }else{
-   throw new Error("Unexpected API response");
-  }
-
-  updateCheckedTime();
-  lastRequest = Date.now();
-
-  if(manual) showToast("Server status refreshed");
- }catch(error){
-  setState("unknown","STATUS UNAVAILABLE","COULD NOT VERIFY SERVER STATUS");
-  document.getElementById("liveLabel").textContent = "● API UNAVAILABLE";
-  document.getElementById("connection").textContent = "UNKNOWN";
-  document.getElementById("connectionDetail").textContent = "TRY AGAIN SHORTLY";
-  document.getElementById("players").innerHTML = '-- <small>/ --</small>';
-  document.getElementById("version").textContent = "--";
-  document.getElementById("lastChecked").textContent = "CHECK FAILED";
-  if(manual) showToast("Could not check status. Try again.");
- }finally{
-  clearTimeout(timeout);
-  requestInProgress = false;
-  setBusy(false);
- }
-}
-
-// Initial check, then automatic checks every 60 seconds.
-checkStatus();
-setInterval(()=>checkStatus(false),60000);
-</script>
-</body>
+  <script>
+   const HOST='play.zyrixmc.fun', PORT=25582;
+const API_HOST='hyper.zyrix.cloud';
+const ADDRESS=HOST+':'+PORT;
+const API='https://api.mcsrvstat.us/3/'+encodeURIComponent(API_HOST+':'+PORT);
+const $=id=>document.getElementById(id);
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+async function copyAddress(){const text=ADDRESS;try{await navigator.clipboard.writeText(text);toast('Server address copied!')}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Server address copied!')}catch(_){toast(text)}ta.remove()}}
+$('copyBtn').addEventListener('click',copyAddress);$('copyJoin').addEventListener('click',copyAddress);
+async function loadStatus(){ $('statusText').textContent='◌ Checking server…';$('apiNote').textContent='Requesting current server status…';try{const res=await fetch(API,{cache:'no-store'});if(!res.ok)throw new Error('API returned '+res.status);const d=await res.json();if(d.online){$('statusText').textContent='● ONLINE';$('statusText').style.color='var(--green)';$('players').textContent=(d.players?.online ?? 0)+' / '+(d.players?.max ?? '?');$('version').textContent=d.version||'Unknown';$('apiNote').textContent='Live data from mcsrvstat.us. The status API can be delayed or temporarily unavailable.';$('footerStatus').textContent='Status checked live from the server status API.';}else{$('statusText').textContent='● OFFLINE';$('statusText').style.color='var(--red)';$('players').textContent='0 / 0';$('version').textContent='—';$('apiNote').textContent='The API reports the server as offline or unreachable. Verify the hostname, port and server status.';$('footerStatus').textContent='The API currently reports the server as offline or unreachable.';}}catch(e){$('statusText').textContent='? STATUS UNAVAILABLE';$('statusText').style.color='var(--pink)';$('players').textContent='Unavailable';$('version').textContent='Unavailable';$('apiNote').textContent='Could not reach the status API from this browser. This may be caused by network/CORS restrictions or API downtime; it does not prove the Minecraft server is offline.';$('footerStatus').textContent='Live status could not be fetched in this browser.';}finally{$('lastCheck').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});}}
+$('refreshBtn').addEventListener('click',loadStatus);loadStatus();setInterval(loadStatus,60000);
+  </script>
+ </body>
 </html>
